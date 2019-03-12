@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Ztemperature.MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/relative_layout"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <EditText
+            android:id="@+id/enter_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:hint="Enter City"
+            android:inputType="text"
+            android:textSize="18sp"/>
+        
+        <LinearLayout
+            android:id="@+id/view_temperature"
+            android:layout_below="@+id/enter_city"
+            android:layout_above="@+id/show_temperature"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/city_title_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="4dp"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/city_temperature_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textSize="32sp" />
+
+            <TextView
+                android:id="@+id/city_humidity_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/city_pressure_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/show_temperature"
+            android:text="Submit"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_alignParentBottom="true"
+            android:focusable="true" />
+
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

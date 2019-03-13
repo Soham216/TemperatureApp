@@ -3,6 +3,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.soham.temperatureapp.API.Entities.WeatherData;
+import com.soham.temperatureapp.Data.Database;
 
 //Presenter in MVP
 public class MainPresenter implements MainContract.Presenter {
@@ -27,8 +28,8 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void getWeatherData(String city) {
-        Log.i("GetWeatherData", "Reached");
-        model.loadWeather(city, "fa4459684db38dbec6269af0c66ca68f", context);
+        Log.i("Presenter", "Getting weather data from model");
+        model.loadWeather(city, "fa4459684db38dbec6269af0c66ca68f", context, view.getDatabaseContext());
     }
 
     @Override

@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.soham.temperatureapp.API.Entities.WeatherData;
+import com.soham.temperatureapp.Data.Database;
 import com.soham.temperatureapp.R;
 import com.soham.temperatureapp.Util.Utils;
 
@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     TextView cityPressure;
 
     MainContract.Presenter presenter;
+    Database database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,30 +35,33 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         cityTemperature = findViewById(R.id.city_temperature_main);
         cityHumidity = findViewById(R.id.city_humidity_main);
         cityPressure = findViewById(R.id.city_pressure_main);
-
         Button buttonSubmit = findViewById(R.id.show_temperature);
-        buttonSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //get the entered city
-                String city = cityName.getText().toString();
-
-                if(city.isEmpty()){
-                    Utils.showToast(getActivityContext(), "Enter City");
-                } else {
-                    getWeather(city);
-                }
-            }
-        });
 
         MainPresenter mPresenter = new MainPresenter(this);
         MainModel mModel = new MainModel(mPresenter);
         mPresenter.setModel(mModel);
         presenter = mPresenter;
+
+        database = new Database(getActivityContext());
+
+        buttonSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //get the entered city
+                String city = cityName.getText().toString();
+                if(city.isEmpty()){
+                    Utils.showToast(getActivityContext(), "Enter City");
+                } else {
+                    onSubmitClicked(city);
+                }
+            }
+        });
+
+
     }
 
     @Override
-    public void getWeather(String city) {
+    public void onSubmitClicked(String city) {
         Log.i("GetWeather", "Reched");
         presenter.getWeatherData(city);
     }
@@ -76,5 +80,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public Context getActivityContext() {
         return this;
+    }
+
+    @Override
+    public Database getDatabaseContext() {
+        return database;
     }
 }
